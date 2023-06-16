@@ -3,6 +3,7 @@
 
 from tkinter import *
 from tkinter import messagebox
+from PIL import Image, ImageTk
 import json
 
 class Quiz:
@@ -26,6 +27,9 @@ class Quiz:
         
         # display the button for next and exit
         self.display_buttons()
+        
+        # display image
+        self.display_image()
         
         # number of questions
         self.data_size=len(question)
@@ -69,10 +73,11 @@ class Quiz:
             # show next question
             self.display_question()
             self.display_options()
+            self.display_image()
             
     def display_buttons(self):
         # button to move to next question
-        next_button = Button(root, text="Next", command=self.next_btn, width=10, bg="blue", fg="white", font=("ariel", 16, "bold")).place(x=350, y=380)
+        Button(root, text="Next", command=self.next_btn, width=10, bg="blue", fg="white", font=("ariel", 16, "bold")).place(x=350, y=380)
     
     def display_options(self):
         val=0
@@ -87,11 +92,20 @@ class Quiz:
     
     def display_question(self):
         # set question properties
-        question_num = Label(root, text=question[self.question_num], width=60, font=('ariel', 16, 'bold'), anchor=W).place(x=70, y=100)
+        Label(root, text=question[self.question_num], width=60, font=('ariel', 16, 'bold'), anchor=W).place(x=70, y=100)
     
     def display_title(self):
         # set title properties
-        title = Label(root, text="Pokemon Type Quiz", width=50, bg="green", fg="white", font=("ariel", 20, "bold")).place(x=0, y=2)
+        Label(root, text="Pokemon Type Quiz", width=50, bg="green", fg="white", font=("ariel", 20, "bold")).place(x=0, y=2)
+        
+    def display_image(self):
+        # create image object & resize
+        base_img = Image.open(images[self.question_num])
+        base_img = base_img.resize((260, 200))
+        img = ImageTk.PhotoImage(base_img)
+        l1 = Label(root, image=img)
+        l1.image = img
+        l1.place(x=500, y=100)
 
     def radio_buttons(self):
         # initialize empty list
@@ -129,6 +143,7 @@ with open('data.json') as f:
 question = (data['question'])
 options = (data['options'])
 answer = (data['answer'])
+images = (data['images'])
 
 # object of the Quiz class
 quiz = Quiz()

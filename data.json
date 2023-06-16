@@ -79,5 +79,33 @@
         ["Fairy", "Fighting", "Rock", "Steel"],
         ["Water, Dragon", "Ice, Rock", "Water, Flying", "Dragon, Ice"],
         ["Fighting, Flying", "Normal, Flying", "Grass, Flying", "Bug, Flying"]
+    ],
+    "images":
+    [
+        "images/rayquaza.png",
+        "images/gengar.png",
+        "images/scizor.png",
+        "images/psyduck.png",
+        "images/staryu.png",
+        "images/slaking.png",
+        "images/fearow.png",
+        "images/bayleef.png",
+        "images/nidoqueen.png",
+        "images/pikachu.png",
+        "images/roggenrola.png",
+        "images/staraptor.png",
+        "images/bastiodon.png",
+        "images/gyarados.png",
+        "images/piloswine.png",
+        "images/beedrill.png",
+        "images/scraggy.png",
+        "images/seismitoad.png",
+        "images/quilava.png",
+        "images/luxio.png",
+        "images/articuno.png",
+        "images/hariyama.png",
+        "images/clefairy.png",
+        "images/kyurem.png",
+        "images/starly.png"
     ]
 }
