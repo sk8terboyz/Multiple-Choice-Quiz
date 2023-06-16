@@ -16,11 +16,11 @@ class Quiz:
         self.display_title()
         self.display_question()
         
-        # opt_selected holds the selected option in a question
-        self.opt_selected=IntVar()
+        # choice holds the selected option in a question
+        self.choice=IntVar()
         
         # display radio buttons
-        self.opts = self.radio_buttons()
+        self.options = self.radio_buttons()
         
         # display options for the current question
         self.display_options()
@@ -37,6 +37,7 @@ class Quiz:
         # count number of correct answers
         self.correct = 0
     
+    # display result of quiz
     def display_result(self):
         
         # calculate the wrong count
@@ -50,11 +51,13 @@ class Quiz:
         
         messagebox.showinfo("Result", f"{result}\n{correct}\n{wrong}")
     
+    # check user choice to correct answer
     def check_answer(self, question_number):
         # check if selected option is correct
-        if self.opt_selected.get() == answer[question_number]:
+        if self.choice.get() == answer[question_number]:
             return True
     
+    # button to submit answer and move to next question
     def next_btn(self):
         # check answer
         if self.check_answer(self.question_num):
@@ -74,30 +77,35 @@ class Quiz:
             self.display_question()
             self.display_options()
             self.display_image()
-            
+    
+    # display the next button 
     def display_buttons(self):
         # button to move to next question
         Button(root, text="Next", command=self.next_btn, width=10, bg="blue", fg="white", font=("ariel", 16, "bold")).place(x=350, y=380)
     
+    # display multiple choice options
     def display_options(self):
         val=0
         
         # deselecting options
-        self.opt_selected.set(0)
+        self.choice.set(0)
         
         # display text for radio buttons
         for option in options[self.question_num]:
-            self.opts[val]['text'] = option
+            self.options[val]['text'] = option
             val += 1
     
+    # display the question
     def display_question(self):
         # set question properties
         Label(root, text=question[self.question_num], width=60, font=('ariel', 16, 'bold'), anchor=W).place(x=70, y=100)
     
+    # set & display title of window
     def display_title(self):
         # set title properties
         Label(root, text="Pokemon Type Quiz", width=50, bg="green", fg="white", font=("ariel", 20, "bold")).place(x=0, y=2)
         
+    # set & display images
     def display_image(self):
         # create image object & resize
         base_img = Image.open(images[self.question_num])
@@ -107,6 +115,7 @@ class Quiz:
         l1.image = img
         l1.place(x=500, y=100)
 
+    # display multiple choice buttons
     def radio_buttons(self):
         # initialize empty list
         question_list = []
@@ -117,7 +126,7 @@ class Quiz:
         # add options to list
         while len(question_list) < 4:
             # set radio button properties
-            radio_btn = Radiobutton(root, text=" ", variable=self.opt_selected, value=len(question_list)+1, font=("ariel", 14))
+            radio_btn = Radiobutton(root, text=" ", variable=self.choice, value=len(question_list)+1, font=("ariel", 14))
             
             # add button to list
             question_list.append(radio_btn)
